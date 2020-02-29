@@ -150,39 +150,50 @@ class IncomeSpent extends StatelessWidget{
         switch(snapshot.connectionState){
 
           case ConnectionState.waiting:
+
             return DayStat(
               day: Utils.WEEKDAYS_LETTER[date.weekday - 1],
               income: 0,
               spent: 0,
-              total: 240,
+              total: user.total,
               today: (date.weekday == DateTime.now().weekday)
             );
 
           case ConnectionState.done:
             //return Container();
             List<int> incomeSpents = userBloc.returnIncomesSpents(snapshot.data.documents);
+
+            if(incomeSpents[2] == null) incomeSpents[2] = 1;
+
+            print('done');
+
             return DayStat(
               day: Utils.WEEKDAYS_LETTER[date.weekday - 1],
               income: incomeSpents[0],
               spent: incomeSpents[1],
-              total: 240,
+              total: user.total,
               today: (date.weekday == DateTime.now().weekday)
             );
 
           case ConnectionState.active:
             List<int> incomeSpents = userBloc.returnIncomesSpents(snapshot.data.documents);
-            /*print(date.toString());
-            print(incomeSpents[0]);
-            print(incomeSpents[1]);*/
-           return DayStat(
+            print("active last balance ${incomeSpents[2]}");
+
+            if(incomeSpents[2] == null) incomeSpents[2] = 1;
+            print("active last balance ${incomeSpents[2]}");
+
+
+
+            return DayStat(
               day: Utils.WEEKDAYS_LETTER[date.weekday - 1],
               income: incomeSpents[0],
               spent: incomeSpents[1],
-              total: 240,
+              total: user.total,
              today: (date.weekday == DateTime.now().weekday)
             );
 
           case ConnectionState.none:
+
             return DayStat(
               day: Utils.WEEKDAYS_LETTER[date.weekday - 1],
               income: 0,
@@ -195,11 +206,13 @@ class IncomeSpent extends StatelessWidget{
             //return Container();
             List<int> incomeSpents = userBloc.returnIncomesSpents(snapshot.data.documents);
 
+            if(incomeSpents[2] == null) incomeSpents[2] = 1;
+
             return DayStat(
               day: Utils.WEEKDAYS_LETTER[date.weekday - 1],
               income: incomeSpents[0],
               spent: incomeSpents[1],
-              total: 240,
+              total: user.total,
               today: (date.weekday == DateTime.now().weekday)
             );
         }

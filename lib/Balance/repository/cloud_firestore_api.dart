@@ -82,13 +82,16 @@ class CloudFirestoreAPI {
     List<int> incomeSpents = List<int>();
     int spents = 0;
     int incomes = 0;
+    int lastUserBalance = 0;
 
     if(movementsListSnapshot.length == 0) {
       incomeSpents.add(incomes);
       incomeSpents.add(spents);
-
+      incomeSpents.add(lastUserBalance);
 
       return incomeSpents;
+    }else{
+      lastUserBalance = movementsListSnapshot.first.data['lastUserBalance'];
     }
 
     movementsListSnapshot.forEach((p) {
@@ -98,12 +101,11 @@ class CloudFirestoreAPI {
 
     });
 
-    //print(spents);
-    //print(incomes);
 
     incomeSpents.add(incomes);
     incomeSpents.add(spents);
-
+    //print('last user balance ${lastUserBalance}');
+    incomeSpents.add(lastUserBalance);
 
     return incomeSpents;
 

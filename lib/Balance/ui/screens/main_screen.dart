@@ -93,7 +93,8 @@ class _MainScreen extends State<MainScreen>{
               return Container();
             case ConnectionState.done:
               User _user = User(uid: _snapshot.data.documents[0]['uid'], name: _snapshot.data.documents[0]['name'],
-                  email: _snapshot.data.documents[0]['email'], photoURL: _snapshot.data.documents[0]['photoURL'], total: _snapshot.data.documents[0]['total']);
+                  email: _snapshot.data.documents[0]['email'], photoURL: _snapshot.data.documents[0]['photoURL'],
+                  total: _snapshot.data.documents[0]['total']);
               return _app(_user);
 
             case ConnectionState.active:
