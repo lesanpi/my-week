@@ -68,11 +68,6 @@ class _MainScreen extends State<MainScreen>{
 
   Widget showProfileData(AsyncSnapshot snapshot) {
 
-    List<Widget> swiperItems = [
-      DetailsList(user, "Expenses", 485 , borderRad: true),
-      DetailsList(user, "Expenses", 485 , borderRad: true)
-    ];
-
     if (!snapshot.hasData || snapshot.hasError) {
       return Container(
         margin: EdgeInsets.only(
@@ -89,34 +84,67 @@ class _MainScreen extends State<MainScreen>{
       );
     } else {
       user = User(uid: snapshot.data.uid,name: snapshot.data.displayName, email: snapshot.data.email, photoURL: snapshot.data.photoUrl, total: 0);
-      return Scaffold(
-        body: Stack(
-          children: <Widget>[
-            GradientBackground(),
-            HeaderAppBar(),
-            ListView(
-              children: <Widget>[
-                UserBar(
-                  onPressed: _incrementSpace,
-                  user: user,
-                ),
-                Stack(
-                  children: <Widget>[
-                    IncomeSpent(user: user),
-                    Column(
-                      children: [
-                        DetailsList(user, "Expenses", 485 , borderRad: true),
-                        //DetailsList(user, "Notification", 0, height: 400, borderRad: false,)
-                      ],
-                    )
-                  ],
-                )
-              ],
-            )
-          ],
-        ),
+      return StreamBuilder(
+        stream: userBloc.userStream(user),
+        builder: (context, AsyncSnapshot _snapshot){
+
+          switch(_snapshot.connectionState){
+            case ConnectionState.waiting:
+              return Container();
+            case ConnectionState.done:
+              User _user = User(uid: _snapshot.data.documents[0]['uid'], name: _snapshot.data.documents[0]['name'],
+                  email: _snapshot.data.documents[0]['email'], photoURL: _snapshot.data.documents[0]['photoURL'], total: _snapshot.data.documents[0]['total']);
+              return _app(_user);
+
+            case ConnectionState.active:
+              User _user = User(uid: _snapshot.data.documents[0]['uid'], name: _snapshot.data.documents[0]['name'],
+                  email: _snapshot.data.documents[0]['email'], photoURL: _snapshot.data.documents[0]['photoURL'], total: _snapshot.data.documents[0]['total']);
+              return _app(_user);
+
+            case ConnectionState.none:
+              return Container();
+            default:
+              User _user = User(uid: _snapshot.data.documents[0]['uid'], name: _snapshot.data.documents[0]['name'],
+                  email: _snapshot.data.documents[0]['email'], photoURL: _snapshot.data.documents[0]['photoURL'], total: _snapshot.data.documents[0]['total']);
+              return _app(_user);
+
+          }
+        },
+
       );
+
+
     }
+  }
+
+  Widget _app(User _user){
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          GradientBackground(),
+          HeaderAppBar(),
+          ListView(
+            children: <Widget>[
+              UserBar(
+                onPressed: _incrementSpace,
+                user: _user,
+              ),
+              Stack(
+                children: <Widget>[
+                  IncomeSpent(user: _user),
+                  Column(
+                    children: [
+                      DetailsList(_user, "Expenses", 485 , borderRad: true),
+                      //DetailsList(user, "Notification", 0, height: 400, borderRad: false,)
+                    ],
+                  )
+                ],
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 
 }

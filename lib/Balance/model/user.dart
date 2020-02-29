@@ -6,7 +6,7 @@ class User {
   final String name;
   final String email;
   final String photoURL;
-  final double total;
+  final int total;
   final List<Movement> movements;
   //myFavoritePlaces
   //myPlaces

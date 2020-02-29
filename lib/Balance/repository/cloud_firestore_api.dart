@@ -26,8 +26,16 @@ class CloudFirestoreAPI {
   }
 
   void createMovement(User user, Movement movement) async{
-    CollectionReference ref = _db.collection(USERS).document(user.uid).collection(MOVEMENTS);
-    ref.add({
+    DocumentReference userRef = _db.collection(USERS).document(user.uid);
+    CollectionReference movementRef = _db.collection(USERS).document(user.uid).collection(MOVEMENTS);
+
+    int newTotal = movement.income ? movement.cantity + user.total : user.total - movement.cantity;
+
+    userRef.setData({
+      'total': newTotal
+    }, merge: true);
+
+    movementRef.add({
       "title": movement.title,
       "cantity": movement.cantity,
       "income": movement.income,
@@ -35,7 +43,8 @@ class CloudFirestoreAPI {
       "month": movement.dateTime.month,
       "year": movement.dateTime.year,
       "type": movement.type,
-      "date": movement.dateTime.toUtc()
+      "date": movement.dateTime.toUtc(),
+      "lastUserBalance": user.total
     });
   }
 

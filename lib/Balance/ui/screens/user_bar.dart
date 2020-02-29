@@ -34,7 +34,41 @@ class UserBar extends StatelessWidget{
 
             switch(snapshot.connectionState){
               case ConnectionState.waiting:
-                return Container();
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    FinancialStatus(
+                      title: "Total Balance",
+                      cantity: 0,
+                      sizeTitle: 18,
+                      sizeCantity: 32,
+                    ),
+                    InkWell(
+                      child: Container(
+                        height: 65,
+                        width: 65,
+                        margin: EdgeInsets.only(
+                            left: 60,
+                            right: 20
+                        ),
+                        child: FittedBox(
+                          child: Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(65),
+                                image: DecorationImage(
+                                    image: NetworkImage(user.photoURL)
+                                ),
+                                color: Color.fromRGBO(255, 255, 255, 0.05)
+                            ),
+                          ),
+                        ),
+                      ),
+                      onTap: onPressed,
+                    )
+                  ],
+                );
               case ConnectionState.done:
 
                 return _userBar(snapshot);
@@ -43,7 +77,41 @@ class UserBar extends StatelessWidget{
                 return _userBar(snapshot);
 
               case ConnectionState.none:
-                return Container();
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    FinancialStatus(
+                      title: "Total Balance",
+                      cantity: 0,
+                      sizeTitle: 18,
+                      sizeCantity: 32,
+                    ),
+                    InkWell(
+                      child: Container(
+                        height: 65,
+                        width: 65,
+                        margin: EdgeInsets.only(
+                            left: 60,
+                            right: 20
+                        ),
+                        child: FittedBox(
+                          child: Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(65),
+                                image: DecorationImage(
+                                    image: NetworkImage(user.photoURL)
+                                ),
+                                color: Color.fromRGBO(255, 255, 255, 0.05)
+                            ),
+                          ),
+                        ),
+                      ),
+                      onTap: onPressed,
+                    )
+                  ],
+                );
               default:
 
                 return _userBar(snapshot);
@@ -57,12 +125,13 @@ class UserBar extends StatelessWidget{
   }
 
   Widget _userBar(AsyncSnapshot snapshot){
+    //print(snapshot.data.documents[0]['total']);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         FinancialStatus(
           title: "Total Balance",
-          cantity: snapshot.data.documents[0]['total'] as int,
+          cantity: snapshot.data.documents[0]['total'],
           sizeTitle: 18,
           sizeCantity: 32,
         ),
