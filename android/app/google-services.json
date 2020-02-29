@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "182912760783",
+    "firebase_url": "https://myweek-f85fc.firebaseio.com",
+    "project_id": "myweek-f85fc",
+    "storage_bucket": "myweek-f85fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182912760783:android:257b7bd7184ba98c32b0ba",
+        "android_client_info": {
+          "package_name": "lesanpi.my_week"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182912760783-e5rshvbcfkpj5trmhphli31qvsjdg810.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lesanpi.my_week",
+            "certificate_hash": "c9e4a86956fd9338251a80776fdafb4ce1598920"
+          }
+        },
+        {
+          "client_id": "182912760783-h91ad7g7plstjmg99glvs9hsckpb1fcp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvQ1Z-qh2X3D1Zs1LeFxeWMcpCagUG-_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182912760783-h91ad7g7plstjmg99glvs9hsckpb1fcp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
