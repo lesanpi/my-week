@@ -9,6 +9,7 @@ class CloudFirestoreRepository{
   final _cloudFirestoreAPI = CloudFirestoreAPI();
 
   void updateUserDataFirestore(User user)=> _cloudFirestoreAPI.updateUserData(user);
+  void setUserTotalBalanceToZero(User user)=> _cloudFirestoreAPI.setUserTotalBalanceToZero(user);
 
   void createMovement(User user, Movement movement) => _cloudFirestoreAPI.createMovement(user, movement);
 

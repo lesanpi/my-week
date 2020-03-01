@@ -98,7 +98,7 @@ class DetailsList extends StatelessWidget{
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                        left: 155
+                        left: 130
                     ),
                     child: FloatingActionButtonFab(iconData: Icons.add, onPressed: (){
                       _showDialog();

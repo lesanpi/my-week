@@ -20,8 +20,13 @@ class CloudFirestoreAPI {
       'email': user.email,
       'photoURL': user.photoURL,
       //'total': user.total,
-      //'movements': user.movements,
       'lastSignIn': DateTime.now()
+    }, merge: true);
+  }
+  void setUserTotalBalanceToZero(User user) async{
+    DocumentReference ref = _db.collection(USERS).document(user.uid);
+    return ref.setData({
+      'total': 0,
     }, merge: true);
   }
 

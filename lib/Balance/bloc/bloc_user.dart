@@ -28,6 +28,7 @@ class UserBloc implements Bloc{
   //2. Registrar usuario
   final _cloudFirestoreRepository = CloudFirestoreRepository();
   void updateUserData(User user) => _cloudFirestoreRepository.updateUserDataFirestore(user);
+  void setUserTotalBalanceToZero(User user) => _cloudFirestoreRepository.setUserTotalBalanceToZero(user);
 
   Stream<QuerySnapshot> usersStream = Firestore.instance.collection(CloudFirestoreAPI().USERS).snapshots();
   Stream<QuerySnapshot> userStream(User user) => Firestore.instance.collection(CloudFirestoreAPI().USERS).where("uid", isEqualTo: user.uid).snapshots();

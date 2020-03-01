@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class LineStat extends StatelessWidget{
 
-  final double height;
+  double height;
   Color color;
 
   LineStat({ Key key, @required this.height, this.color} );
@@ -14,6 +14,10 @@ class LineStat extends StatelessWidget{
 
     if(color == null) {
       color = Color.fromRGBO(255, 255, 255, 0.05);
+    }
+    if(height.isNaN){
+      if(color == Color.fromRGBO(255, 255, 255, 0.05)) height = 180;
+      else height = 0;
     }
 
     return Container(

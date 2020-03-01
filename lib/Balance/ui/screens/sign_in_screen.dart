@@ -86,7 +86,7 @@ class _SignInScreen extends State<SignInScreen>{
               Flexible(
                 child: Container(
                   width: screenWidth,
-                  child: Text("Welcome \nto your TravelApp",
+                  child: Text("Start saving your money",
                     style: TextStyle(
                       fontSize: 37.0,
                       fontFamily: "Lato",
@@ -101,15 +101,17 @@ class _SignInScreen extends State<SignInScreen>{
                 userBloc.signIn().then((FirebaseUser user){
 
                   userBloc.updateUserData(User(
-                    uid: user.uid,
-                    name: user.displayName,
-                    email: user.email,
-                    photoURL: user.photoUrl, total: null
+                      uid: user.uid,
+                      name: user.displayName,
+                      email: user.email,
+                      photoURL: user.photoUrl,
+                      total: 0
                   ));
                 });
               },
-              width: 300.0,
-              height: 50.0,)
+                width: 300.0,
+                height: 50.0,
+              )
             ],
           ),
         ],

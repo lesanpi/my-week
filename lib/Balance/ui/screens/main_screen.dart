@@ -92,12 +92,14 @@ class _MainScreen extends State<MainScreen>{
             case ConnectionState.waiting:
               return Container();
             case ConnectionState.done:
+              if(_snapshot.data.documents[0]['total'] == null) userBloc.setUserTotalBalanceToZero(user);
               User _user = User(uid: _snapshot.data.documents[0]['uid'], name: _snapshot.data.documents[0]['name'],
                   email: _snapshot.data.documents[0]['email'], photoURL: _snapshot.data.documents[0]['photoURL'],
                   total: _snapshot.data.documents[0]['total']);
               return _app(_user);
 
             case ConnectionState.active:
+              if(_snapshot.data.documents[0]['total'] == null) userBloc.setUserTotalBalanceToZero(user);
               User _user = User(uid: _snapshot.data.documents[0]['uid'], name: _snapshot.data.documents[0]['name'],
                   email: _snapshot.data.documents[0]['email'], photoURL: _snapshot.data.documents[0]['photoURL'], total: _snapshot.data.documents[0]['total']);
               return _app(_user);
@@ -105,8 +107,11 @@ class _MainScreen extends State<MainScreen>{
             case ConnectionState.none:
               return Container();
             default:
+
+              if(_snapshot.data.documents[0]['total'] == null) userBloc.setUserTotalBalanceToZero(user);
               User _user = User(uid: _snapshot.data.documents[0]['uid'], name: _snapshot.data.documents[0]['name'],
                   email: _snapshot.data.documents[0]['email'], photoURL: _snapshot.data.documents[0]['photoURL'], total: _snapshot.data.documents[0]['total']);
+
               return _app(_user);
 
           }
@@ -135,7 +140,7 @@ class _MainScreen extends State<MainScreen>{
                   IncomeSpent(user: _user),
                   Column(
                     children: [
-                      DetailsList(_user, "Expenses", 485 , borderRad: true),
+                      DetailsList(_user, "Movements", 485 , borderRad: true),
                       //DetailsList(user, "Notification", 0, height: 400, borderRad: false,)
                     ],
                   )

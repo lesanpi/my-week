@@ -160,35 +160,31 @@ class IncomeSpent extends StatelessWidget{
             );
 
           case ConnectionState.done:
-            //return Container();
+
             List<int> incomeSpents = userBloc.returnIncomesSpents(snapshot.data.documents);
 
             if(incomeSpents[2] == null) incomeSpents[2] = 1;
-
-            print('done');
 
             return DayStat(
               day: Utils.WEEKDAYS_LETTER[date.weekday - 1],
               income: incomeSpents[0],
               spent: incomeSpents[1],
-              total: user.total,
+              total: (user.total + incomeSpents[1] - incomeSpents[0] + 1).abs(),
               today: (date.weekday == DateTime.now().weekday)
             );
 
           case ConnectionState.active:
             List<int> incomeSpents = userBloc.returnIncomesSpents(snapshot.data.documents);
-            print("active last balance ${incomeSpents[2]}");
+            /*print("active last balance ${incomeSpents[2]}");
 
             if(incomeSpents[2] == null) incomeSpents[2] = 1;
-            print("active last balance ${incomeSpents[2]}");
-
-
+            print("active last balance ${incomeSpents[2]}");*/
 
             return DayStat(
               day: Utils.WEEKDAYS_LETTER[date.weekday - 1],
               income: incomeSpents[0],
               spent: incomeSpents[1],
-              total: user.total,
+              total: (user.total + incomeSpents[1] - incomeSpents[0] + 1).abs(),
              today: (date.weekday == DateTime.now().weekday)
             );
 
@@ -212,7 +208,7 @@ class IncomeSpent extends StatelessWidget{
               day: Utils.WEEKDAYS_LETTER[date.weekday - 1],
               income: incomeSpents[0],
               spent: incomeSpents[1],
-              total: user.total,
+              total: (user.total + incomeSpents[1] - incomeSpents[0] + 1).abs(),
               today: (date.weekday == DateTime.now().weekday)
             );
         }
