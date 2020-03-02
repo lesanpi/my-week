@@ -51,11 +51,13 @@ class Utils{
       if(yesterdayMonth == 0){
         yesterdayMonth = 12;
         yesterdayYear = year - 1;
+      }else{
+        yesterdayYear = year;
       }
       if(yesterdayMonth == 1 || yesterdayMonth == 3 || yesterdayMonth == 5 || yesterdayMonth == 7 || yesterdayMonth == 8 || yesterdayMonth == 10 || yesterdayMonth == 12){
         yesterdayDay = 31;
       } else if (yesterdayMonth == 2){
-        if(yesterdayDay % 4 == 0) yesterdayDay = 29;
+        if(yesterdayYear % 4 == 0) yesterdayDay = 29;
         else yesterdayDay = 28;
       } else yesterdayDay = 30;
 

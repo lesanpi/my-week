@@ -128,7 +128,7 @@ class _MainScreen extends State<MainScreen>{
       body: Stack(
         children: <Widget>[
           GradientBackground(),
-          HeaderAppBar(),
+          //HeaderAppBar(),
           ListView(
             children: <Widget>[
               UserBar(
@@ -147,7 +147,8 @@ class _MainScreen extends State<MainScreen>{
                 ],
               )
             ],
-          )
+          ),
+          HeaderAppBar(),
         ],
       ),
     );
