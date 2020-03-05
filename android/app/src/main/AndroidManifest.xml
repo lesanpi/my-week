@@ -7,8 +7,8 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="MyWeek"
-        android:icon="@mipmap/ic_launcher">
+        android:label="SuperSaver"
+        android:icon="@mipmap/logo_myweek">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

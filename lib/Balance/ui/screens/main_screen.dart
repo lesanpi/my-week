@@ -90,7 +90,31 @@ class _MainScreen extends State<MainScreen>{
 
           switch(_snapshot.connectionState){
             case ConnectionState.waiting:
-              return Container();
+              return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                        height: 30,
+                        width: 30,
+                        child: CircularProgressIndicator(
+                          backgroundColor: Color(0xFF000a12),
+
+                          //valueColor: Colors.redAccent,
+                        )
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+    /*child: Text("Cargando",
+                          style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontFamily: "Lato",
+                          decoration: TextDecoration.none
+                          )
+                      ),*/
+                    )
+                  ]
+              );
             case ConnectionState.done:
               if(_snapshot.data.documents[0]['total'] == null) userBloc.setUserTotalBalanceToZero(user);
               User _user = User(uid: _snapshot.data.documents[0]['uid'], name: _snapshot.data.documents[0]['name'],
@@ -105,7 +129,30 @@ class _MainScreen extends State<MainScreen>{
               return _app(_user);
 
             case ConnectionState.none:
-              return Container();
+              return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                        height: 30,
+                        width: 30,
+                        child: CircularProgressIndicator(
+                          backgroundColor: Color(0xFF000a12)
+                          //valueColor: Colors.redAccent,
+                        )
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      /*child: Text("Cargando",
+                          style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontFamily: "Lato",
+                          decoration: TextDecoration.none
+                          )
+                      ),*/
+                    )
+                  ]
+              );
             default:
 
               if(_snapshot.data.documents[0]['total'] == null) userBloc.setUserTotalBalanceToZero(user);

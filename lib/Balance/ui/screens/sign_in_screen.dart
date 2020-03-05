@@ -47,27 +47,25 @@ class _SignInScreen extends State<SignInScreen>{
           return signInGoogleUI();
         } else {
           return Container(
-            color: Color(0xFF584CD1),
+            color: Color(0xFF000a12) ,
             alignment: Alignment.center,
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                      height: 70,
-                      width: 70,
-                      child: CircularProgressIndicator(
-                        backgroundColor: Colors.white,)
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Text("Cargando", style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontFamily: "Lato",
-                        decoration: TextDecoration.none)
-                    ),)
-                ]
-            ),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    height: 30,
+                    width: 30,
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.greenAccent,
+
+                      //valueColor: Colors.redAccent,
+                    )
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 10),
+                )
+              ]
+          ),
           );
         }
       }

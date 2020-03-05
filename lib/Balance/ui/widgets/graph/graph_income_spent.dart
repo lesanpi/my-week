@@ -35,7 +35,7 @@ class IncomeSpent extends StatelessWidget{
       child: Container(
         padding: EdgeInsets.only(
           top: 35,
-          left: 40,
+          left: 40 * screenWidth /411.428,
           right: 40,
         ),
         child: Column(

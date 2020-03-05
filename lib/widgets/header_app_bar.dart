@@ -26,7 +26,7 @@ class HeaderAppBar extends StatelessWidget{
                 child: IconButton(
                   icon: Icon(Icons.keyboard_arrow_left, color: Colors.white70, size: 35),
                   onPressed: (){
-                    print("Hola");
+                    //rint("Hola");
                     userBloc.signOut();
 
                   },
@@ -36,7 +36,7 @@ class HeaderAppBar extends StatelessWidget{
               width: 45,
             ),
             onTap: (){
-              print("Hola");
+              //print("Hola");
               userBloc.signOut();
             },
           )

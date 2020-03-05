@@ -20,6 +20,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         home: SignInScreen(),
+        theme: ThemeData(
+          accentColor: Colors.greenAccent//Color(0xFF000a12)//Colors.redAccent,//Color(0xFF000a12)
+
+        ),
+
       ),
       bloc: UserBloc()
     );

@@ -36,13 +36,14 @@ class _DialogNewMovement extends State<DialogNewMovement>{
     // TODO: implement build
 
     userBloc = BlocProvider.of<UserBloc>(context);
+    double screenWidth = MediaQuery.of(context).size.width;
 
     return AlertDialog(
       backgroundColor: Colors.transparent,
       content: Container(
           height: 150,
-          width: 600,
-          padding: EdgeInsets.all(15),
+          width: 600 * screenWidth /411.428,
+          padding: EdgeInsets.all(15 * screenWidth /411.428),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(10))
@@ -71,7 +72,7 @@ class _DialogNewMovement extends State<DialogNewMovement>{
                     inputType: null,
                     maxLines: 1,
                     controller: _controllerTitle,
-                    width: 145,
+                    width: 145 * screenWidth /411.428,
                     left: 5,
                   ),
                   TextInput(
@@ -79,7 +80,7 @@ class _DialogNewMovement extends State<DialogNewMovement>{
                     inputType: TextInputType.number,
                     maxLines: 1,
                     controller: _controllerCantity,
-                    width: 70,
+                    width: 70 * screenWidth /411.428,
                     left: 0,
                   ),
                 ],
